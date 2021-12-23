@@ -46,7 +46,8 @@ token = st.sidebar.text_input("Token ID")
 
 if not token:
     st.error("ENTER TOKEN ID ON LEFT")
-    st.image(/token_id.png)    
+    image= image.open('token_id.png')
+    st.image(image)    
    
 else:
     
