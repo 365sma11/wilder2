@@ -53,7 +53,7 @@ if endpoint == 'Media Lookup':
     r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key=ckey_fa91923a9dc34181ac2bbbdc82e')
     token_content=r.json()
     st.write(token_content)
-    st.write(token_content(data/items/0/nft_data/0/external_data/attributes))
+    st.write(token_content[data][items][0][nft_data][0][external_data][attributes])
 
     st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
     st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
@@ -80,7 +80,7 @@ if endpoint == 'Media Lookup':
     step=0
 
     # while step<14 :
-    #     trait='token_content[data][items][0][nft_data][0][external_data][attribute]'& step & '[trait_type]'
+    #     trait='token_content[data][items][0][nft_data][0][external_data][attributes]'& step & '[trait_type]'
     #     trait_value='token_content[data][items][0][nft_data][0][external_data][attribute]'& step & '[value]'
     #     st.write(trait & ":" & trait_value)
     #     step=step+1
