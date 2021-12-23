@@ -77,7 +77,8 @@ if endpoint == 'Media Lookup':
     st.markdown(link_1024, unsafe_allow_html=True)
     st.markdown(link_animation, unsafe_allow_html=True)
     step=0
-    While token_content:
+
+    While token_content['data']['items'][0]['nft_data'][0]['external_data'][attribute]:
         st.write(f'token_content['data']['items'][0]['nft_data'][0]['external_data'][attribute]{step}[trait_type]'& ":" & 'token_content['data']['items'][0]['nft_data'][0]['external_data'][attribute]{step}[value]
         step=step+1
    
