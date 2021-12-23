@@ -62,6 +62,7 @@ if endpoint == 'Media Lookup':
     image1024 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
     animation1 = token_content['data']['items'][0]['nft_data'][0]['external_data']['animation_url']      
     opensea= 'https://opensea.io/assets/'+ token_content['data']['items'][0]['contract_address']+ "/" + token_content['data']['items'][0]['nft_data'][0]['token_id']
+    st.write('Token ID:')
     st.write(token_content['data']['items'][0]['nft_data'][0]['token_id'])
     opensea_link= f'[OpenSea] ({opensea})'
     st.markdown(opensea_link, unsafe_allow_html=True)
