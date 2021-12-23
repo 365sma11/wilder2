@@ -65,7 +65,6 @@ if endpoint == 'Media Lookup':
     opensea_link= f'[OpenSea] ({opensea})'
     st.markdown(opensea_link, unsafe_allow_html=True)
     res=animation1.strip('ipfs://')
-
     
     animation= "https://ipfs.io/ipfs/"+ res
     link_256 = f'[Image 256] ({image256})'
@@ -78,31 +77,3 @@ if endpoint == 'Media Lookup':
     st.markdown(link_animation, unsafe_allow_html=True)
     r = requests.get("https://api.opensea.io/api/v1/assets/"+response['missing_complete_data'][counter]['data']['items'][0]['contract_address']+ "/" + response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['token_id'])
     current_sale = r.json()
-    #st.write(current_sale)
-
-
-
-        # if asset['image_256']:
-        #     
-        #     if asset['image_256'].endswith('mp4') or asset['image_256'].endswith('mov'):
-        #         st.video(asset['image_url'])
-        #     elif asset['image_256'].endswith('svg'):
-        #         svg = requests.get(asset['image_256']).content.decode()
-        #         st.image(svg)
-        #     elif asset['image_256']:
-        #         st.image(asset['image_256'])
-         
-        # else:
-        #     st.write(howmany)
-        #     howmany=howmany+1
-        #     st.write("image_url is Null")
-        #     st.write("Token id is")
-        #     st.write(asset['token_id'])
-        #     st.write(asset['owner'])
-
-        #st.write(counter)
-    
-
-     
-
-    
