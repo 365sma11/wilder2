@@ -46,8 +46,7 @@ token = st.sidebar.text_input("Token ID")
 
 if not token:
     st.error("ENTER TOKEN ID ON LEFT")
-    image= image.open('lanecl1/wilder/main/token_id.png')
-    st.image(image)    
+
    
 else:
     
