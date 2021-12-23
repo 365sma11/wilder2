@@ -27,14 +27,14 @@ st.markdown(link, unsafe_allow_html=True)
 
    
 #SIDEBAR -One day stats for collection on 
-r = requests.get(f"https://api.opensea.io/api/v1/collection/{collection_slug}/stats",params=params)
-response = r.json()
-st.sidebar.write("Floor Price: ", response["stats"]["floor_price"])
-st.sidebar.write("One day sales: ", response["stats"]["one_day_sales"])
-st.sidebar.write("One day avg price (Eth): ", response["stats"]["one_day_average_price"])
-st.sidebar.write("One day volume (Eth): ", response["stats"]["one_day_volume"])
-st.sidebar.write("Total NFT's: ", response["stats"]["total_supply"])
-st.sidebar.write("Number of Owners: ", response["stats"]["num_owners"])
+# r = requests.get(f"https://api.opensea.io/api/v1/collection/{collection_slug}/stats",params=params)
+# response = r.json()
+# st.sidebar.write("Floor Price: ", response["stats"]["floor_price"])
+# st.sidebar.write("One day sales: ", response["stats"]["one_day_sales"])
+# st.sidebar.write("One day avg price (Eth): ", response["stats"]["one_day_average_price"])
+# st.sidebar.write("One day volume (Eth): ", response["stats"]["one_day_volume"])
+# st.sidebar.write("Total NFT's: ", response["stats"]["total_supply"])
+# st.sidebar.write("Number of Owners: ", response["stats"]["num_owners"])
 
 #st.slider("Select how many days", 1, 100, 100)
 
