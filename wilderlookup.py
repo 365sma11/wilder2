@@ -14,21 +14,17 @@ st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}")
 counter=0
 howmany=0
 
+collection_slug="wilderworld"
+asset_contract_address="0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D"
+params={}
+r = requests.get(f"https://api.opensea.io/api/v1/asset_contract/{asset_contract_address}",params=params)
+response = r.json()
+st.header (response["collection"]["name"]) 
+st.image(response["collection"]["image_url"],width=40)
+st.image (response["collection"]["banner_image_url"])
+link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
+st.markdown(link, unsafe_allow_html=True)
 
-    st.sidebar.subheader("Stats")
-   
-    collection_slug="wilderworld"
-    asset_contract_address="0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D"
-    params={}
-    r = requests.get(f"https://api.opensea.io/api/v1/asset_contract/{asset_contract_address}",params=params)
-    response = r.json()
-    st.header (response["collection"]["name"]) 
-    st.image(response["collection"]["image_url"],width=40)
-    st.image (response["collection"]["banner_image_url"])
-    link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
-    st.markdown(link, unsafe_allow_html=True)
-    # df=pd.read_excel("WILDER_WHEELS.xlsx")
-    # st.write(df)
    
 #SIDEBAR -One day stats for collection on 
     r = requests.get(f"https://api.opensea.io/api/v1/collection/{collection_slug}/stats",params=params)
