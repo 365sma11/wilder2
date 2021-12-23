@@ -48,7 +48,7 @@ if not token:
    
 else:
     st.sidebar.subheader("Filters")
-    token = st.sidebar.text_input("Token ID")
+    #token = st.sidebar.text_input("Token ID")
     params={}
     params['limit']=50
     r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key=ckey_fa91923a9dc34181ac2bbbdc82e')
