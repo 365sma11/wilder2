@@ -67,6 +67,7 @@ if endpoint == 'Media Lookup':
     res=animation1.strip('ipfs://')
     
     animation= "https://ipfs.io/ipfs/"+ res
+    st.video(res)
     link_256 = f'[Image 256] ({image256})'
     link_512 = f'[Image 512]({image512})'
     link_1024 = f'[Image 1024]({image1024})' 
@@ -75,5 +76,4 @@ if endpoint == 'Media Lookup':
     st.markdown(link_512, unsafe_allow_html=True)
     st.markdown(link_1024, unsafe_allow_html=True)
     st.markdown(link_animation, unsafe_allow_html=True)
-    r = requests.get("https://api.opensea.io/api/v1/assets/"+response['data']['items'][0]['contract_address']+ "/" + response['data']['items'][0]['nft_data'][0]['token_id'])
-    current_sale = r.json()
+
