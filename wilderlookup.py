@@ -65,11 +65,11 @@ if endpoint == 'Media Lookup':
     opensea_link= f'[OpenSea] ({opensea})'
     st.markdown(opensea_link, unsafe_allow_html=True)
     res=''
-    for i in range(0, len(animation1)):
-            if i>=n:
-                res= res + animation1[i]
+    # for i in range(0, len(animation1)):
+    #         if i>=n:
+    #             res= res + animation1[i]
     
-    animation= "https://ipfs.io/ipfs/"+ res
+    # animation= "https://ipfs.io/ipfs/"+ res
     link_256 = f'[Image 256] ({image256})'
     link_512 = f'[Image 512]({image512})'
     link_1024 = f'[Image 1024]({image1024})' 
