@@ -79,11 +79,8 @@ if endpoint == 'Media Lookup':
     st.markdown(link_animation, unsafe_allow_html=True)
     step=0
 
-    # while step<14 :
-    #     trait='token_content[data][items][0][nft_data][0][external_data][attributes]'& step & '[trait_type]'
-    #     trait_value='token_content[data][items][0][nft_data][0][external_data][attribute]'& step & '[value]'
-    #     st.write(trait & ":" & trait_value)
-    #     step=step+1
+    df= pd.dataframe(token_content['data']['items'][0]['nft_data'][0]['external_data']['attributes'])
+    st.dataframe(df)
    
 
 
