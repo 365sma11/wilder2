@@ -67,7 +67,7 @@ if endpoint == 'Media Lookup':
     res=animation1.strip('ipfs://')
     
     animation= "https://ipfs.io/ipfs/"+ res
-    video_file= open(res)
+    video_file= open(animation)
     video_bytes=video_file.read()
 
     st.video(video_bytes)
