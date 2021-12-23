@@ -45,7 +45,8 @@ st.sidebar.subheader("Filters")
 token = st.sidebar.text_input("Token ID")
 
 if not token:
-    st.error("ENTER TOKEN ID ON LEFT")    
+    st.error("ENTER TOKEN ID ON LEFT")
+    st.image(token_id.png)    
    
 else:
     
