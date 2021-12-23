@@ -64,10 +64,8 @@ if endpoint == 'Media Lookup':
     st.write(token_content['data']['items'][0]['nft_data'][0]['token_id'])
     opensea_link= f'[OpenSea] ({opensea})'
     st.markdown(opensea_link, unsafe_allow_html=True)
-    res=''
-     for i in range(0, len(animation1)):
-             if i>=n:
-                 res= res + animation1[i]
+    res=animation1.strip('ipfs://')
+
     
     animation= "https://ipfs.io/ipfs/"+ res
     link_256 = f'[Image 256] ({image256})'
