@@ -79,7 +79,9 @@ if endpoint == 'Media Lookup':
     step=0
 
     while step<14 :
-        st.write(f'token_content[data][items][0][nft_data][0][external_data][attribute]{step}[trait_type]' & ":" & 'token_content[data][items][0][nft_data][0][external_data][attribute]{step}[value]')
+        trait='token_content[data][items][0][nft_data][0][external_data][attribute]'& step & '[trait_type]'
+        trait_value='token_content[data][items][0][nft_data][0][external_data][attribute]'& step & '[value]'
+        st.write(trait & ":" & trait_value)
         step=step+1
    
 
