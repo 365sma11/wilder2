@@ -56,7 +56,7 @@ if endpoint == 'Media Lookup':
 
 
     st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
-    st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
+    st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512'])
     image256 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256']
     image512 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512']
     image1024 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
