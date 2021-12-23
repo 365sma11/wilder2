@@ -56,10 +56,10 @@ if endpoint == 'Media Lookup':
 
     st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
     st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
-    image256 = token_content[counter]['data']['items'][0]['nft_data'][0]['external_data']['image_256']
-    image512 = token_content[counter]['data']['items'][0]['nft_data'][0]['external_data']['image_512']
-    image1024 = token_content[counter]['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
-    animation1 = token_content[counter]['data']['items'][0]['nft_data'][0]['external_data']['animation_url']      
+    image256 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256']
+    image512 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512']
+    image1024 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
+    animation1 = token_content['data']['items'][0]['nft_data'][0]['external_data']['animation_url']      
     opensea= 'https://opensea.io/assets/'+ token_content['data']['items'][0]['contract_address']+ "/" + token_content['data']['items'][0]['nft_data'][0]['token_id']
     st.write(token_content['data']['items'][0]['nft_data'][0]['token_id'])
     opensea_link= f'[OpenSea] ({opensea})'
