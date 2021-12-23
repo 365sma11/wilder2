@@ -5,7 +5,7 @@ import pandas as pd
 
 data = {'assets': []}
 file= "wheelslist.json"
-endpoint= st.sidebar.selectbox("Endpoints", ['Lookup'])
+endpoint= st.sidebar.selectbox("Endpoints", ['Media Lookup'])
 st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
 
 
@@ -52,58 +52,41 @@ if endpoint == 'All':
 
 
 
-if endpoint == 'Lookup':
+if endpoint == 'Media Lookup':
     st.sidebar.subheader("Filters")
-    owner = st.sidebar.text_input("Owner")
     token = st.sidebar.text_input("Token ID")
     params={}
     params['limit']=50
-    cartype= st.sidebar.expander("Car Type")
-    cartype.checkbox("WERRARI 250 WWO 1964")
-    cartype.checkbox("WERRARI 250 WESTA WOSSA 1957")
-
-    if owner:
-        params['owner'] = owner
-    if token:
-        params['token_id'] = token
-   
+    r=requests.get("https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key=ckey_fa91923a9dc34181ac2bbbdc82e")
+    token_content=r.json()
+    st.write(token_content)
+    st.write(response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['name'])
+    st.image(response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
+    image256 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_256']
+    image512 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_512']
+    image1024 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
+    animation1 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['animation_url']      
+    opensea= 'https://opensea.io/assets/'+ response['missing_complete_data'][counter]['data']['items'][0]['contract_address']+ "/" + response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['token_id']
+    st.write(response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['token_id'])
+    opensea_link= f'[OpenSea] ({opensea})'
+    st.markdown(opensea_link, unsafe_allow_html=True)
+    res=''
+    for i in range(0, len(animation1)):
+            if i>=n:
+                res= res + animation1[i]
     
-    r= open('missing_complete.json','r')
-    data= r.read()
-    response = json.loads(data)
-    st.write(response)
-    
-    n=7 
-    while response:
-        counter=counter+1
-        st.write(counter)
-        st.write(response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['name'])
-        st.image(response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
-        image256 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_256']
-        image512 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_512']
-        image1024 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
-        animation1 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['animation_url']      
-        opensea= 'https://opensea.io/assets/'+ response['missing_complete_data'][counter]['data']['items'][0]['contract_address']+ "/" + response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['token_id']
-        st.write(response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['token_id'])
-        opensea_link= f'[OpenSea] ({opensea})'
-        st.markdown(opensea_link, unsafe_allow_html=True)
-        res=''
-        for i in range(0, len(animation1)):
-                if i>=n:
-                    res= res + animation1[i]
-        
-        animation= "https://ipfs.io/ipfs/"+ res
-        link_256 = f'[Image 256] ({image256})'
-        link_512 = f'[Image 512]({image512})'
-        link_1024 = f'[Image 1024]({image1024})' 
-        link_animation = f'[Video]({animation})' 
-        st.markdown(link_256, unsafe_allow_html=True)
-        st.markdown(link_512, unsafe_allow_html=True)
-        st.markdown(link_1024, unsafe_allow_html=True)
-        st.markdown(link_animation, unsafe_allow_html=True)
-        r = requests.get("https://api.opensea.io/api/v1/assets/"+response['missing_complete_data'][counter]['data']['items'][0]['contract_address']+ "/" + response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['token_id'])
-        current_sale = r.json()
-        #st.write(current_sale)
+    animation= "https://ipfs.io/ipfs/"+ res
+    link_256 = f'[Image 256] ({image256})'
+    link_512 = f'[Image 512]({image512})'
+    link_1024 = f'[Image 1024]({image1024})' 
+    link_animation = f'[Video]({animation})' 
+    st.markdown(link_256, unsafe_allow_html=True)
+    st.markdown(link_512, unsafe_allow_html=True)
+    st.markdown(link_1024, unsafe_allow_html=True)
+    st.markdown(link_animation, unsafe_allow_html=True)
+    r = requests.get("https://api.opensea.io/api/v1/assets/"+response['missing_complete_data'][counter]['data']['items'][0]['contract_address']+ "/" + response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['token_id'])
+    current_sale = r.json()
+    #st.write(current_sale)
 
 
 
