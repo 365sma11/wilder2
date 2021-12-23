@@ -77,3 +77,10 @@ if endpoint == 'Media Lookup':
     st.markdown(link_1024, unsafe_allow_html=True)
     st.markdown(link_animation, unsafe_allow_html=True)
 
+    for att in token_content:
+        id= id& token_content['data']['items'][0]['nft_data'][0]['external_data'][attribute][trait_type]& ","
+        data= data& token_content['data']['items'][0]['nft_data'][0]['external_data'][attribute][value]& ","
+    df=pd.dataframe(id, data)
+    st.dataframe(df)
+
+
