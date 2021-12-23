@@ -54,14 +54,14 @@ if endpoint == 'Media Lookup':
     token_content=r.json()
     st.write(token_content)
 
-    st.write(response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['name'])
-    st.image(response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
-    image256 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_256']
-    image512 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_512']
-    image1024 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
-    animation1 = response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['external_data']['animation_url']      
-    opensea= 'https://opensea.io/assets/'+ response['missing_complete_data'][counter]['data']['items'][0]['contract_address']+ "/" + response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['token_id']
-    st.write(response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['token_id'])
+    st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
+    st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
+    image256 = token_content[counter]['data']['items'][0]['nft_data'][0]['external_data']['image_256']
+    image512 = token_content[counter]['data']['items'][0]['nft_data'][0]['external_data']['image_512']
+    image1024 = token_content[counter]['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
+    animation1 = token_content[counter]['data']['items'][0]['nft_data'][0]['external_data']['animation_url']      
+    opensea= 'https://opensea.io/assets/'+ token_content['data']['items'][0]['contract_address']+ "/" + token_content['data']['items'][0]['nft_data'][0]['token_id']
+    st.write(token_content['data']['items'][0]['nft_data'][0]['token_id'])
     opensea_link= f'[OpenSea] ({opensea})'
     st.markdown(opensea_link, unsafe_allow_html=True)
     res=''
