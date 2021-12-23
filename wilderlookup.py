@@ -20,7 +20,6 @@ params={}
 r = requests.get(f"https://api.opensea.io/api/v1/asset_contract/{asset_contract_address}",params=params)
 response = r.json()
 st.header (response["collection"]["name"]) 
-st.image(response["collection"]["image_url"],width=40)
 st.image (response["collection"]["banner_image_url"])
 link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
 st.markdown(link, unsafe_allow_html=True)
@@ -43,7 +42,7 @@ st.markdown(link, unsafe_allow_html=True)
 
 #if endpoint == 'Media Lookup':
 
-if st.sidebar.text_input!= null:    
+if st.sidebar.text_input!="":    
     st.sidebar.subheader("Filters")
     token = st.sidebar.text_input("Token ID")
     params={}
