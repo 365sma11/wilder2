@@ -75,5 +75,5 @@ if endpoint == 'Media Lookup':
     st.markdown(link_512, unsafe_allow_html=True)
     st.markdown(link_1024, unsafe_allow_html=True)
     st.markdown(link_animation, unsafe_allow_html=True)
-    r = requests.get("https://api.opensea.io/api/v1/assets/"+response['missing_complete_data'][counter]['data']['items'][0]['contract_address']+ "/" + response['missing_complete_data'][counter]['data']['items'][0]['nft_data'][0]['token_id'])
+    r = requests.get("https://api.opensea.io/api/v1/assets/"+response['data']['items'][0]['contract_address']+ "/" + response['data']['items'][0]['nft_data'][0]['token_id'])
     current_sale = r.json()
