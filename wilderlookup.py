@@ -42,7 +42,8 @@ st.markdown(link, unsafe_allow_html=True)
 
 
 #if endpoint == 'Media Lookup':
-if st.sidebar.text_input:    
+
+if st.sidebar.text_input!= null:    
     st.sidebar.subheader("Filters")
     token = st.sidebar.text_input("Token ID")
     params={}
