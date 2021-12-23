@@ -14,7 +14,7 @@ st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}")
 counter=0
 howmany=0
 
-if endpoint == 'Collection':
+
     st.sidebar.subheader("Stats")
    
     collection_slug="wilderworld"
@@ -45,7 +45,8 @@ if endpoint == 'Collection':
 
 
 
-if endpoint == 'Media Lookup':
+#if endpoint == 'Media Lookup':
+if st.sidebar.text_input:    
     st.sidebar.subheader("Filters")
     token = st.sidebar.text_input("Token ID")
     params={}
