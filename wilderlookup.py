@@ -43,7 +43,7 @@ st.markdown(link, unsafe_allow_html=True)
 #if endpoint == 'Media Lookup':
 token = st.sidebar.text_input("Token ID")
 
-if not condition('token'):
+if not token:
     st.error("ENTER TOKEN ID ON LEFT")    
    
 else:
