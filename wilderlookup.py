@@ -1,19 +1,12 @@
-from typing import Counter
+# Writen for use with streamlit.io
 import streamlit as st
 import requests, json 
 import pandas as pd
 
-data = {'assets': []}
-file= "wheelslist.json"
 endpoint= st.sidebar.selectbox("Endpoints", ['Media Lookup'])
 st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
 
-
-
-
-counter=0
-howmany=0
-
+# Get Opensea api
 collection_slug="wilderworld"
 asset_contract_address="0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D"
 params={}
@@ -25,7 +18,7 @@ link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5ca
 st.markdown(link, unsafe_allow_html=True)
 
    
-#SIDEBAR -One day stats for collection on 
+#SIDEBAR -One day stats for collection on OpenSea- not accurate because opensea has all wilder collections mixed together
 # r = requests.get(f"https://api.opensea.io/api/v1/collection/{collection_slug}/stats",params=params)
 # response = r.json()
 # st.sidebar.write("Floor Price: ", response["stats"]["floor_price"])
@@ -34,7 +27,6 @@ st.markdown(link, unsafe_allow_html=True)
 # st.sidebar.write("One day volume (Eth): ", response["stats"]["one_day_volume"])
 # st.sidebar.write("Total NFT's: ", response["stats"]["total_supply"])
 # st.sidebar.write("Number of Owners: ", response["stats"]["num_owners"])
-
 #st.slider("Select how many days", 1, 100, 100)
 
 
@@ -50,14 +42,14 @@ if not token:
    
 else:
     
-    #token = st.sidebar.text_input("Token ID")
     params={}
     params['limit']=50
-    r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key=ckey_fa91923a9dc34181ac2bbbdc82e')
+    api_key='ckey_fa91923a9dc34181ac2bbbdc82e'  # Get your api key here: https://www.covalenthq.com/platform/#/apikey/
+    r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
     token_content=r.json()
 
 
-
+    # Write token content
     st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
     st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512'])
     image256 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256']
