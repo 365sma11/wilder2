@@ -95,12 +95,12 @@ elif endpoint == 'Kicks':
         st.write(token_content)
 
         # Write token content
-        st.write(token_content['items'][0]['nft_data'][0]['external_data']['name'])
-        st.image(token_content['items'][0]['nft_data'][0]['external_data']['image_512'])
-        image256 = token_content['items'][0]['nft_data'][0]['external_data']['image_256']
-        image512 = token_content['items'][0]['nft_data'][0]['external_data']['image_512']
-        image1024 = token_content['items'][0]['nft_data'][0]['external_data']['image_1024']
-        animation1 = token_content['items'][0]['nft_data'][0]['external_data']['image']      
+        #st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
+        st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512'])
+        image256 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256']
+        image512 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512']
+        image1024 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
+        animation1 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image']      
         opensea= 'https://opensea.io/assets/'+ token_content['data']['items'][0]['contract_address']+ "/" + token_content['data']['items'][0]['nft_data'][0]['token_id']
         st.write('Token ID:')
         st.write(token_content['data']['items'][0]['nft_data'][0]['token_id'])
