@@ -97,6 +97,7 @@ elif endpoint == 'Kicks':
         # Write token content
         #st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
         st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512'])
+        description = token_content['data']['items'][0]['nft_data'][0]['external_data']['description']
         image256 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256']
         image512 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512']
         image1024 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
@@ -109,10 +110,11 @@ elif endpoint == 'Kicks':
         res=animation1.strip('https://ipfs.fleek.co/ipfs/')
         
         animation= "https://ipfs.io/ipfs/"+ res
-
-        link_256 = f'[Image 256] ({image256})'
-        link_512 = f'[Image 512]({image512})'
-        link_1024 = f'[Image 1024]({image1024})' 
+        st.video(animation)
+        st.write(description)
+        #link_256 = f'[Image 256] ({image256})'
+        #link_512 = f'[Image 512]({image512})'
+        #link_1024 = f'[Image 1024]({image1024})' 
         link_animation = f'[Video]({animation})' 
         st.markdown(link_256, unsafe_allow_html=True)
         st.markdown(link_512, unsafe_allow_html=True)
