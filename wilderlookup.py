@@ -93,7 +93,8 @@ elif endpoint == 'Kicks':
         r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
         token_content=r.json()
         #st.write(token_content)
-
+        image= Image.open('AirWild.png')
+        st.image(image)
         # Write token content
         #st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
         #st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512'])
