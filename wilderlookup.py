@@ -14,9 +14,7 @@ params={}
 r = requests.get(f"https://api.opensea.io/api/v1/asset_contract/{asset_contract_address}",params=params)
 response = r.json()
 st.header (response["collection"]["name"]) 
-st.image (response["collection"]["banner_image_url"])
-link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
-st.markdown(link, unsafe_allow_html=True)
+
 
    
 #SIDEBAR -One day stats for collection on OpenSea- not accurate because opensea has all wilder collections mixed together
@@ -34,6 +32,9 @@ st.markdown(link, unsafe_allow_html=True)
 
 
 if endpoint == 'Wheels/Crafts':
+    st.image (response["collection"]["banner_image_url"])
+    link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
+    st.markdown(link, unsafe_allow_html=True)
     st.sidebar.subheader("Filters")
     token = st.sidebar.text_input("Token ID")
 
@@ -79,6 +80,10 @@ if endpoint == 'Wheels/Crafts':
         st.dataframe(df)
    
 elif endpoint == 'Kicks':
+    im= Image.open('AirWild.png')
+    st.image(im)
+    link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
+    st.markdown(link, unsafe_allow_html=True)
     st.sidebar.subheader("Filters")
     token = st.sidebar.text_input("Token ID")
 
@@ -94,8 +99,7 @@ elif endpoint == 'Kicks':
         r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
         token_content=r.json()
         #st.write(token_content)
-        im= Image.open('AirWild.png')
-        st.image(im)
+
         # Write token content
         #st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
         #st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512'])
