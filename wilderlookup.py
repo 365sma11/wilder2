@@ -116,12 +116,12 @@ elif endpoint == 'Kicks':
         #link_512 = f'[Image 512]({image512})'
         #link_1024 = f'[Image 1024]({image1024})' 
         link_animation = f'[Video]({animation})' 
-        st.markdown(link_256, unsafe_allow_html=True)
-        st.markdown(link_512, unsafe_allow_html=True)
-        st.markdown(link_1024, unsafe_allow_html=True)
+        #st.markdown(link_256, unsafe_allow_html=True)
+        #st.markdown(link_512, unsafe_allow_html=True)
+        #st.markdown(link_1024, unsafe_allow_html=True)
         st.markdown(link_animation, unsafe_allow_html=True)
 
-        df=token_content['data']['items'][0]['nft_data'][0]['external_data']['attributes']
-        st.dataframe(df)
+       # df=token_content['data']['items'][0]['nft_data'][0]['external_data']['attributes']
+        #st.dataframe(df)
 
 
