@@ -4,7 +4,7 @@ import requests, json
 import pandas as pd
 from PIL import Image
 
-endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks'])
+endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks','Missing'])
 st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
 
 # Get Opensea api
@@ -46,7 +46,7 @@ if endpoint == 'Wheels/Crafts':
         
         params={}
         params['limit']=50
-        api_key='ckey_fa91923a9dc34181ac2bbbdc82e'  # Get your api key here: https://www.covalenthq.com/platform/#/apikey/
+        api_key='ckey_fa91923a9dc34181ac2bbbdc82e'  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
         r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
         token_content=r.json()
 
@@ -78,7 +78,8 @@ if endpoint == 'Wheels/Crafts':
 
         df=token_content['data']['items'][0]['nft_data'][0]['external_data']['attributes']
         st.dataframe(df)
-   
+
+
 elif endpoint == 'Kicks':
     im= Image.open('AirWild.png')
     st.image(im)
@@ -130,4 +131,18 @@ elif endpoint == 'Kicks':
        # df=token_content['data']['items'][0]['nft_data'][0]['external_data']['attributes']
         #st.dataframe(df)
 
-
+elif endpoint == 'Missing':
+# run cli.py, nft.py to create missing.json
+    st.image (response["collection"]["banner_image_url"])
+    file= "missing.json"
+    r= open(file,'r')
+    data= r.read()
+    response = json.loads(data)
+    counter= 0
+    while response:
+            counter=counter+1
+            st.write(counter)
+            opensea= 'https://opensea.io/assets/'+ asset_contract_address + "/" + response['missing_data'][counter]['token_id']
+            st.write(response['missing_data'][counter]['token_id'])
+            opensea_link= f'[OpenSea] ({opensea})'
+            st.markdown(opensea_link, unsafe_allow_html=True)
