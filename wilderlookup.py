@@ -154,7 +154,8 @@ elif endpoint == 'Missing':
                        
             st.write (response['missing_data'][counter]['name'])
             #st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
-            opensea_link= f'response['missing_data'][counter]['opensea'] ({opensea})'
+            osea=response['missing_data'][counter]['opensea']
+            opensea_link= f'[OpenSea] ({osea})'
             st.markdown(opensea_link, unsafe_allow_html=True)
 
           
