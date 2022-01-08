@@ -142,8 +142,19 @@ elif endpoint == 'Missing':
     while response:
             counter=counter+1
             st.write(counter)
-            opensea= 'https://opensea.io/assets/'+ asset_contract_address + "/" + response['missing_data'][counter]['token_id']
+            token = response['missing_data'][counter]['token_id']
+        
+
+           #load pic
+           # api_key='ckey_fa91923a9dc34181ac2bbbdc82e'  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
+           # tid=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
+           # token_content=tid.json()
+           
             st.write(response['missing_data'][counter]['token_id'])
-            opensea_link= f'[OpenSea] ({opensea})'
+                       
+            st.write (response['missing_data'][counter]['name'])
+            #st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
+            opensea_link= f'response['missing_data'][counter]['opensea'] ({opensea})'
             st.markdown(opensea_link, unsafe_allow_html=True)
-            
+
+          
