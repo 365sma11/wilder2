@@ -4,7 +4,7 @@ import requests, json
 import pandas as pd
 from PIL import Image
 
-endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks','Missing'])
+endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks','Missing', 'Fix'])
 st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
 
 # Get Opensea api
@@ -133,6 +133,7 @@ elif endpoint == 'Kicks':
 
 elif endpoint == 'Missing':
 # run cli.py, nft.py to create missing.json
+    st.sidebar.subheader("Recent Wheels with Metadata Refreshed") 
     st.image (response["collection"]["banner_image_url"])
     file= "missing.json"
     r= open(file,'r')
@@ -157,5 +158,36 @@ elif endpoint == 'Missing':
             osea=response['missing_data'][counter]['opensea']
             opensea_link= f'[OpenSea] ({osea})'
             st.markdown(opensea_link, unsafe_allow_html=True)
+
+elif endpoint == 'Fix':
+# run cli.py, nft.py to create missing.json
+    st.image (response["collection"]["banner_image_url"])
+    st.sidebar.subheader("Opensea 'image' var not loading") 
+    st.sidebar.subheader ('"Image" var picture is used in searches/filters.  eg. search for the token id')
+    file= "fix.json"
+    r= open(file,'r')
+    data= r.read()
+    response = json.loads(data)
+    counter= 0
+    while response:
+            counter=counter+1
+            st.write(counter)
+            token = response['missing_data'][counter]['token_id']
+        
+
+           #load pic
+           # api_key='ckey_fa91923a9dc34181ac2bbbdc82e'  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
+           # tid=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
+           # token_content=tid.json()
+           
+            st.write(response['missing_data'][counter]['token_id'])
+                       
+            st.write (response['missing_data'][counter]['name'])
+            #st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
+            osea=response['missing_data'][counter]['opensea']
+            opensea_link= f'[OpenSea] ({osea})'
+            st.markdown(opensea_link, unsafe_allow_html=True)
+
+                
 
           
