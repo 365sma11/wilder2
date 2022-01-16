@@ -13,7 +13,7 @@ asset_contract_address="0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D"
 params={}
 r = requests.get(f"https://api.opensea.io/api/v1/asset_contract/{asset_contract_address}",params=params)
 response = r.json()
-st.header (response["collection"]["name"]) 
+#st.header (response["collection"]["name"]) 
 
 
    
