@@ -32,7 +32,7 @@ params={}
 
 
 if endpoint == 'Wheels/Crafts':
-    st.image (response["collection"]["banner_image_url"])
+    st.image (wheels_banner.png)
     link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
     st.markdown(link, unsafe_allow_html=True)
     st.sidebar.subheader("Filters")
