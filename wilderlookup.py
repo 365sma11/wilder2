@@ -32,7 +32,7 @@ params={}
 
 
 if endpoint == 'Wheels/Crafts':
-    im= Image.open('wheels_banner')
+    im= Image.open('wheels_banner.png')
     st.image(im)
     link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
     st.markdown(link, unsafe_allow_html=True)
@@ -135,7 +135,7 @@ elif endpoint == 'Kicks':
 elif endpoint == 'Missing':
 # run cli.py, nft.py to create missing.json
     st.sidebar.subheader("Recent Wheels with Metadata Refreshed") 
-    im= Image.open('wheels_banner')
+    im= Image.open('wheels_banner.png')
     st.image(im)
     file= "missing.json"
     r= open(file,'r')
@@ -163,7 +163,7 @@ elif endpoint == 'Missing':
 
 elif endpoint == 'Fix':
 # run cli.py, nft.py to create missing.json
-    im= Image.open('wheels_banner')
+    im= Image.open('wheels_banner.png')
     st.image(im)
     st.sidebar.subheader("Opensea 'image' var not loading") 
     st.sidebar.subheader ('"Image" var picture is used in searches/filters.  eg. search for the token id')
