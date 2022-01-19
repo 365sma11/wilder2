@@ -51,7 +51,7 @@ if endpoint == 'Wheels/Crafts':
         
         params={}
         params['limit']=50
-        api_key='ckey_fa91923a9dc34181ac2bbbdc82e'  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
+        api_key= st.secrets["cov_api"]  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
         r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
         token_content=r.json()
 
@@ -101,7 +101,7 @@ elif endpoint == 'Kicks S0':
          #Get Metadata and parse
         params={
 
-            'x-api-key':"OgXkd840mWZ9tIrr1bP1JOwlyRAfYofZXeJllv4Cvnh4hOdZypkFytaC5zJkMDhK"
+            'x-api-key':st.secrets["mor_api"]
         }
         Mr=requests.get(f'https://deep-index.moralis.io/api/v2/nft/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/{token}/?chain=eth&format=decimal', headers=params)
         Mtoken_content=Mr.json()
@@ -205,13 +205,6 @@ elif endpoint == 'Missing':
             counter=counter+1
             st.write(counter)
             token = response['missing_data'][counter]['token_id']
-        
-
-           #load pic
-           # api_key='ckey_fa91923a9dc34181ac2bbbdc82e'  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
-           # tid=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
-           # token_content=tid.json()
-           
             st.write(response['missing_data'][counter]['token_id'])
                        
             st.write (response['missing_data'][counter]['name'])
@@ -236,11 +229,6 @@ elif endpoint == 'Fix':
             token = response['missing_data'][counter]['token_id']
         
 
-           #load pic
-           # api_key='ckey_fa91923a9dc34181ac2bbbdc82e'  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
-           # tid=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
-           # token_content=tid.json()
-           
             st.write(response['missing_data'][counter]['token_id'])
                        
             st.write (response['missing_data'][counter]['name'])
