@@ -11,9 +11,10 @@ st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}")
 collection_slug="wilderworld"
 asset_contract_address="0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D"
 params={
-    'x-api-key':"e5f2a82c71bb4748a1ae81060c449fa2"
+    "X-API-KEY":"e5f2a82c71bb4748a1ae81060c449fa2"
 }
 r = requests.get(f"https://api.opensea.io/api/v1/asset_contract/{asset_contract_address}",headers=params)
+
 response = r.json()
 st.header (response["collection"]["name"]) 
 
