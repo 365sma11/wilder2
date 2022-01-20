@@ -4,14 +4,18 @@ import requests, json
 import pandas as pd
 from PIL import Image
 
-endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0','Missing', 'Fix'])
+os_api= st.secrets["os_api"]
+cov_api= st.secrets["cov_api"]
+mor_api= st.secrets["mor_api"]
+
+endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Missing', 'Fix'])
 st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
 
 # Get Opensea api
 collection_slug="wilderworld"
 asset_contract_address="0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D"
 params={
-    "X-API-KEY":st.secrets["os_api"]
+    "X-API-KEY": os_api
 }
 r = requests.get(f"https://api.opensea.io/api/v1/asset_contract/{asset_contract_address}",headers=params)
 
@@ -51,7 +55,7 @@ if endpoint == 'Wheels/Crafts':
         
         params={}
         params['limit']=50
-        api_key= st.secrets["cov_api"]  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
+        api_key= cov_api  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
         r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
         token_content=r.json()
 
@@ -101,7 +105,7 @@ elif endpoint == 'Kicks S0':
          #Get Metadata and parse
         params={
 
-            'x-api-key':st.secrets["mor_api"]
+            'x-api-key':mor_api
         }
         Mr=requests.get(f'https://deep-index.moralis.io/api/v2/nft/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/{token}/?chain=eth&format=decimal', headers=params)
         Mtoken_content=Mr.json()
@@ -147,7 +151,7 @@ elif endpoint == 'Kicks S0':
         #Get info covalent
         params={}
         params['limit']=50
-        api_key='ckey_fa91923a9dc34181ac2bbbdc82e'  # Get your api key here: https://www.covalenthq.com/platform/#/apikey/
+        api_key= cov_api  # Get your api key here: https://www.covalenthq.com/platform/#/apikey/
         r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
         token_content=r.json()
         #st.write(token_content)
@@ -185,6 +189,99 @@ elif endpoint == 'Kicks S0':
 
         st.write ('ATTRIBUTES')
         st.dataframe(kicksdictionary["Attributes"])
+        
+        st.write("UTILITY")
+        #df=kicksdictionary['Attributes']
+        df=utility
+        st.dataframe(df)
+elif endpoint == 'Kicks S01':
+    im= Image.open('AirWild.png')
+    st.image(im)
+    link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
+    st.markdown(link, unsafe_allow_html=True)
+    st.sidebar.subheader("Filters")
+    token = st.sidebar.text_input("Token ID")
+
+    if not token:
+        st.error("ENTER TOKEN ID ON LEFT")
+
+    
+    else:
+       
+        #Get info covalent
+        params={}
+        params['limit']=50
+        api_key=cov_api  # Get your api key here: https://www.covalenthq.com/platform/#/apikey/
+        r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
+        token_content=r.json()
+        st.write(token_content)
+        nft_data=token_content['data']['items'][0]['nft_data'][0]
+        nft_data_external=token_content['data']['items'][0]['nft_data'][0]['external_data']
+        nft_model=nft_data_external['attributes'][1]['value']
+        st.write(nft_data)
+        st.write(nft_model)
+     
+
+        #Add Utility
+        
+        if nft_model=="BLOCKCHAIN":
+            utility= {"trait":"Sprint Speed", "value":"3: Hyperspeed"}, {"trait":"Hops", "value":"2: High Jump"}, {"trait":"Swim Speed", "value":"None"}, {"trait":"Climb Ability", "value":"None"},{"trait":"Zero Gravity", "value":"N"},{"trait":"Walk on Water", "value":"Y"}
+        elif nft_model=="FROSTIES":
+            utility= {"trait":"Sprint Speed", "value":"None"}, {"trait":"Hops", "value":"3: Mega Hops"}, {"trait":"Swim Speed", "value":"2: Normal Swim"}, {"trait":"Climb Ability", "value":"None"}, {"trait":"Zero Gravity", "value":"Y"}, {"trait":"Walk on Water", "value":"N"}
+        elif nft_model=="INSTRUMENT":
+            utility= {"trait":"Sprint Speed", "value":"2: Fast"}, {"trait":"Hops", "value":"None"}, {"trait":"Swim Speed", "value":"None"}, {"trait":"Climb Ability", "value":"3: Climb any mountain in Wiami"}, {"trait":"Zero Gravity", "value":"N"}, {"trait":"Walk on Water", "value":"N"}
+        elif nft_model=="METASHROOM":
+            utility= {"trait":"Sprint Speed", "value":"1: Increased Speed"}, {"trait":"Hops", "value":"None"}, {"trait":"Swim Speed", "value":"3: Michael Phelps Level"}, {"trait":"Climb Ability", "value":"None"}, {"trait":"Zero Gravity", "value":"N"}, {"trait":"Walk on Water", "value":"N"}
+        elif nft_model=="LIQUID":
+            utility= {"trait":"Sprint Speed", "value":"None"}, {"trait":"Hops", "value":"None"}, {"trait":"Swim Speed", "value":"2: Normal Swim"}, {"trait":"Climb Ability", "value":"None"}, {"trait":"Zero Gravity", "value":"N"}, {"trait":"Walk on Water", "value":"N"}
+        elif nft_model=="MANDALA":
+            utility= {"trait":"Sprint Speed", "value":"None"}, {"trait":"Hops", "value":"2: High Jump"}, {"trait":"Swim Speed", "value":"None"}, {"trait":"Climb Ability", "value":"None"}, {"trait":"Zero Gravity", "value":"N"}, {"trait":"Walk on Water", "value":"N"}
+        elif nft_model=="MOMENTUM":
+            utility= {"trait":"Sprint Speed", "value":"2: Fast"}, {"trait":"Hops", "value":"None"}, {"trait":"Swim Speed", "value":"None"}, {"trait":"Climb Ability", "value":"None"},{"trait":"Zero Gravity","value":"N"},{"trait":"Walk on Water","value":"N"}
+        elif nft_model=="RIBBON":
+            utility= {"trait":"Sprint Speed", "value":"None"}, {"trait":"Hops", "value":"None"}, {"trait":"Swim Speed", "value":"None"}, {"trait":"Climb Ability", "value":"1: Increased Climb Ability"}, {"trait":"Zero Gravity", "value":"N"}, {"trait":"Walk on Water", "value":"N"}
+        elif nft_model=="FEAR":
+            utility= {"trait":"Sprint Speed", "value":"1: Increased Speed"}, {"trait":"Hops", "value":"None"}, {"trait":"Swim Speed", "value":"None"}, {"trait":"Climb Ability", "value":"None"}, {"trait":"Zero Gravity", "value":"N"}, {"trait":"Walk on Water", "value":"N"}
+        elif nft_model=="ZERO":
+            utility= {"trait":"Sprint Speed", "value":"None"}, {"trait":"Hops", "value":"1: Increased Jump"}, {"trait":"Swim Speed", "value":"None"}, {"trait":"Climb Ability", "value":"None"}, {"trait":"Zero Gravity", "value":"N"}, {"trait":"Walk on Water", "value":"N"}
+        else:
+            utility={"None":"None", "None":"None"}
+        
+
+
+        # Write token content
+        #st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
+        #st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512'])
+        description = nft_data_external['description']
+        image256 = nft_data_external['image_256']
+        image512 = nft_data_external['image_512']
+        image1024 = nft_data_external['image_1024']
+        animation1 = nft_data_external['animation_url']      
+        opensea= 'https://opensea.io/assets/'+ token_content['data']['items'][0]['contract_address']+ "/" + token_content['data']['items'][0]['nft_data'][0]['token_id']
+
+        
+        res=animation1.strip('ipfs://')
+        
+        animation= "https://ipfs.io/ipfs/"+ res
+        st.video(animation)
+        st.header(nft_data_external['name'])  
+        st.write('Token ID:')
+        st.write(token_content['data']['items'][0]['nft_data'][0]['token_id'])
+        opensea_link= f'[OpenSea] ({opensea})'
+        st.markdown(opensea_link, unsafe_allow_html=True)
+ 
+        st.write(description)
+        #link_256 = f'[Image 256] ({image256})'
+        #link_512 = f'[Image 512]({image512})'
+        #link_1024 = f'[Image 1024]({image1024})' 
+        link_animation = f'[Video]({animation})' 
+        #st.markdown(link_256, unsafe_allow_html=True)
+        #st.markdown(link_512, unsafe_allow_html=True)
+        #st.markdown(link_1024, unsafe_allow_html=True)
+        st.markdown(link_animation, unsafe_allow_html=True)
+
+        st.write ('ATTRIBUTES')
+        st.dataframe(nft_data_external['attributes'])
         
         st.write("UTILITY")
         #df=kicksdictionary['Attributes']
