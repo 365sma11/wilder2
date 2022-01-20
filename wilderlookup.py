@@ -14,13 +14,7 @@ st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}")
 # Get Opensea api
 collection_slug="wilderworld"
 asset_contract_address="0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D"
-params={
-    "X-API-KEY": os_api
-}
-r = requests.get(f"https://api.opensea.io/api/v1/asset_contract/{asset_contract_address}",headers=params)
-
-response = r.json()
-st.header (response["collection"]["name"]) 
+st.header ("Wilder World") 
 
 
 
@@ -41,7 +35,8 @@ st.header (response["collection"]["name"])
 
 
 if endpoint == 'Wheels/Crafts':
-    st.image (response["collection"]["banner_image_url"])
+    im= Image.open('wheels_banner.png')
+    st.image(im)
     link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
     st.markdown(link, unsafe_allow_html=True)
     st.sidebar.subheader("Filters")
@@ -290,7 +285,8 @@ elif endpoint == 'Kicks S01':
 elif endpoint == 'Missing':
 # run cli.py, nft.py to create missing.json
     st.sidebar.subheader("Recent Wheels with Metadata Refreshed") 
-    st.image (response["collection"]["banner_image_url"])
+    im= Image.open('wheels_banner.png')
+    st.image(im)
     file= "missing.json"
     r= open(file,'r')
     data= r.read()
@@ -310,7 +306,8 @@ elif endpoint == 'Missing':
 
 elif endpoint == 'Fix':
 # run cli.py, nft.py to create missing.json
-    st.image (response["collection"]["banner_image_url"])
+    im= Image.open('wheels_banner.png')
+    st.image(im)
     st.sidebar.subheader("Opensea 'image' var not loading") 
     st.sidebar.subheader ('"Image" var picture is used in searches/filters.  eg. search for the token id')
     file= "fix.json"
