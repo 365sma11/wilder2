@@ -305,8 +305,7 @@ elif endpoint == 'Kicks S01':
 #             opensea_link= f'[OpenSea] ({osea})'
 #             st.markdown(opensea_link, unsafe_allow_html=True)
 
-elif endpoint == 'Wallet NFTs':
-
+elif endpoint == 'Wallet NFTs Value':
     st.sidebar.subheader("Wallet NFT's") 
     wallet = st.sidebar.text_input("Wallet")
 
