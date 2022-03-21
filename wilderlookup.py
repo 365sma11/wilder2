@@ -360,7 +360,9 @@ elif endpoint == 'Wallet NFTs Value':
                             st.write(f'Current Floor price {floor} Eth')
                             st.write(f'Token id: {token_id}')
                             st.write(f'Contract: {contract_id}')
-                            wallet_value+= floor
+                            
+                            if floor!= None:
+                                wallet_value+= floor
             
                     counter+=1
                         
@@ -368,8 +370,7 @@ elif endpoint == 'Wallet NFTs Value':
                     counter=counter+1 
             else:
                 break  
-        st.header(f'Your Total Nft values based on current floor prices is: {wallet_value} Eth')    
-
+        st.header(f'Your Total Nft values based on current floor prices is: {wallet_value} Eth')
 # elif endpoint == 'Fix':
 # # run cli.py, nft.py to create missing.json
 #     im= Image.open('wheels_banner.png')
