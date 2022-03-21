@@ -8,7 +8,7 @@ os_api= st.secrets["os_api"]
 cov_api= st.secrets["cov_api"]
 mor_api= st.secrets["mor_api"]
 
-endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Missing', 'Fix'])
+endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Wallet NFTs Value'])
 st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
 
 # Get Opensea api
@@ -189,6 +189,7 @@ elif endpoint == 'Kicks S0':
         #df=kicksdictionary['Attributes']
         df=utility
         st.dataframe(df)
+
 elif endpoint == 'Kicks S01':
     im= Image.open('AirWild.png')
     st.image(im)
@@ -282,52 +283,113 @@ elif endpoint == 'Kicks S01':
         st.dataframe(df)
 
 
-elif endpoint == 'Missing':
-# run cli.py, nft.py to create missing.json
-    st.sidebar.subheader("Recent Wheels with Metadata Refreshed") 
-    im= Image.open('wheels_banner.png')
-    st.image(im)
-    file= "missing.json"
-    r= open(file,'r')
-    data= r.read()
-    response = json.loads(data)
-    counter= 0
-    while response:
-            counter=counter+1
-            st.write(counter)
-            token = response['missing_data'][counter]['token_id']
-            st.write(response['missing_data'][counter]['token_id'])
+# elif endpoint == 'Missing':
+# # run cli.py, nft.py to create missing.json
+#     st.sidebar.subheader("Recent Wheels with Metadata Refreshed") 
+#     im= Image.open('wheels_banner.png')
+#     st.image(im)
+#     file= "missing.json"
+#     r= open(file,'r')
+#     data= r.read()
+#     response = json.loads(data)
+#     counter= 0
+#     while response:
+#             counter=counter+1
+#             st.write(counter)
+#             token = response['missing_data'][counter]['token_id']
+#             st.write(response['missing_data'][counter]['token_id'])
                        
-            st.write (response['missing_data'][counter]['name'])
-            #st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
-            osea=response['missing_data'][counter]['opensea']
-            opensea_link= f'[OpenSea] ({osea})'
-            st.markdown(opensea_link, unsafe_allow_html=True)
+#             st.write (response['missing_data'][counter]['name'])
+#             #st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
+#             osea=response['missing_data'][counter]['opensea']
+#             opensea_link= f'[OpenSea] ({osea})'
+#             st.markdown(opensea_link, unsafe_allow_html=True)
 
-elif endpoint == 'Fix':
-# run cli.py, nft.py to create missing.json
-    im= Image.open('wheels_banner.png')
-    st.image(im)
-    st.sidebar.subheader("Opensea 'image' var not loading") 
-    st.sidebar.subheader ('"Image" var picture is used in searches/filters.  eg. search for the token id')
-    file= "fix.json"
-    r= open(file,'r')
-    data= r.read()
-    response = json.loads(data)
-    counter= 0
-    while response:
-            counter=counter+1
-            st.write(counter)
-            token = response['missing_data'][counter]['token_id']
+elif endpoint == 'Wallet NFTs':
+
+    st.sidebar.subheader("Wallet NFT's") 
+    wallet = st.sidebar.text_input("Wallet")
+
+    if not wallet:
+        st.error("ENTER CONTRACT ON LEFT")
+  
+    else:
+       
+        # params={}
+        # params['limit']=50
+        api_key= cov_api
+        r=requests.get(f'https://api.covalenthq.com/v1/1/address/{wallet}/balances_v2/?quote-currency=USD&format=JSON&nft=true&no-nft-fetch=false&key={api_key}')
+        token_content=r.json()
+        counter=0 
+        #st.write(token_content)
+        wallet_value=0  
+        #st.write(len(token_content['data']['items']))  
+
+        while token_content:
+         
+
+            if counter <= (len(token_content['data']['items']))-1:
+      
+                if token_content['data']['items'][counter]['nft_data']:
+
+
+                    # while token_content['data']['items'][counter]['nft_data']:
+                    for i in range(len(token_content['data']['items'][counter]['nft_data'])):
+                        token_id=token_content['data']['items'][counter]['nft_data'][i]['token_id']
+                        contract_id=token_content['data']['items'][counter]['contract_address']
+                        token_name=token_content['data']['items'][counter]['nft_data'][i]['external_data']['name']
+                        im=token_content['data']['items'][counter]['nft_data'][i]['external_data']['image_256']
+                        st.image(im)
+
+                       
+                        # Get Floor Price
+                        params={
+                           "X-API-KEY":os_api
+                         }
+                        ro=requests.get(f'https://api.opensea.io/api/v1/asset_contract/{contract_id}',headers=params)
+                        os_contract=ro.json()
+                        collection_slug=os_contract['collection']['slug']
+                        ro=requests.get(f'https://api.opensea.io/api/v1/collection/{collection_slug}/stats',headers=params)
+                        os_contract_stats=ro.json()
+                        floor=os_contract_stats['stats']['floor_price']
+                        st.write(token_name)
+                        st.write(f'Current Floor price {floor} Eth')
+                        st.write(f'Token id: {token_id}')
+                        st.write(f'Contract: {contract_id}')
+                        wallet_value+= floor
+                
+                    counter+=1
+                        
+                else:
+                    counter=counter+1 
+            else:
+                break  
+        st.header(f'Your Total Nft values based on current floor prices is: {wallet_value} Eth')    
+
+# elif endpoint == 'Fix':
+# # run cli.py, nft.py to create missing.json
+#     im= Image.open('wheels_banner.png')
+#     st.image(im)
+#     st.sidebar.subheader("Opensea 'image' var not loading") 
+#     st.sidebar.subheader ('"Image" var picture is used in searches/filters.  eg. search for the token id')
+#     file= "fix.json"
+#     r= open(file,'r')
+#     data= r.read()
+#     response = json.loads(data)
+#     counter= 0
+#     while response:
+#             counter=counter+1
+#             st.write(counter)
+#             token = response['missing_data'][counter]['token_id']
         
 
-            st.write(response['missing_data'][counter]['token_id'])
+#             st.write(response['missing_data'][counter]['token_id'])
                        
-            st.write (response['missing_data'][counter]['name'])
-            #st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
-            osea=response['missing_data'][counter]['opensea']
-            opensea_link= f'[OpenSea] ({osea})'
-            st.markdown(opensea_link, unsafe_allow_html=True)
+#             st.write (response['missing_data'][counter]['name'])
+#             #st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256'])
+#             osea=response['missing_data'][counter]['opensea']
+#             opensea_link= f'[OpenSea] ({osea})'
+#             st.markdown(opensea_link, unsafe_allow_html=True)
 
                 
 
