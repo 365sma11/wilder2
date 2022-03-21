@@ -311,7 +311,7 @@ elif endpoint == 'Wallet NFTs Value':
     wallet = st.sidebar.text_input("Wallet")
 
     if not wallet:
-        st.error("ENTER CONTRACT ON LEFT")
+        st.error("ENTER WALLET ON LEFT")
   
     else:
        
