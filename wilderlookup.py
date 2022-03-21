@@ -305,7 +305,8 @@ elif endpoint == 'Kicks S01':
 #             opensea_link= f'[OpenSea] ({osea})'
 #             st.markdown(opensea_link, unsafe_allow_html=True)
 
-elif endpoint == 'Wallet NFTs Value':
+elif endpoint == 'Wallet NFTs':
+
     st.sidebar.subheader("Wallet NFT's") 
     wallet = st.sidebar.text_input("Wallet")
 
@@ -320,7 +321,7 @@ elif endpoint == 'Wallet NFTs Value':
         r=requests.get(f'https://api.covalenthq.com/v1/1/address/{wallet}/balances_v2/?quote-currency=USD&format=JSON&nft=true&no-nft-fetch=false&key={api_key}')
         token_content=r.json()
         counter=0 
-        #st.write(token_content)
+        st.write(token_content)
         wallet_value=0  
         #st.write(len(token_content['data']['items']))  
 
@@ -330,7 +331,7 @@ elif endpoint == 'Wallet NFTs Value':
             if counter <= (len(token_content['data']['items']))-1:
       
                 if token_content['data']['items'][counter]['nft_data']:
-
+                    st.write(counter)         
 
                     # while token_content['data']['items'][counter]['nft_data']:
                     for i in range(len(token_content['data']['items'][counter]['nft_data'])):
@@ -338,25 +339,29 @@ elif endpoint == 'Wallet NFTs Value':
                         contract_id=token_content['data']['items'][counter]['contract_address']
                         token_name=token_content['data']['items'][counter]['nft_data'][i]['external_data']['name']
                         im=token_content['data']['items'][counter]['nft_data'][i]['external_data']['image_256']
-                        st.image(im)
+                        st.write(im)
+                        
+                        if im != None:
+                        
+                            st.image(im)
 
-                       
-                        # Get Floor Price
-                        params={
-                           "X-API-KEY":os_api
-                         }
-                        ro=requests.get(f'https://api.opensea.io/api/v1/asset_contract/{contract_id}',headers=params)
-                        os_contract=ro.json()
-                        collection_slug=os_contract['collection']['slug']
-                        ro=requests.get(f'https://api.opensea.io/api/v1/collection/{collection_slug}/stats',headers=params)
-                        os_contract_stats=ro.json()
-                        floor=os_contract_stats['stats']['floor_price']
-                        st.write(token_name)
-                        st.write(f'Current Floor price {floor} Eth')
-                        st.write(f'Token id: {token_id}')
-                        st.write(f'Contract: {contract_id}')
-                        wallet_value+= floor
-                
+                            
+                            # Get Floor Price
+                            params={
+                            "X-API-KEY":os_api
+                            }
+                            ro=requests.get(f'https://api.opensea.io/api/v1/asset_contract/{contract_id}',headers=params)
+                            os_contract=ro.json()
+                            collection_slug=os_contract['collection']['slug']
+                            ro=requests.get(f'https://api.opensea.io/api/v1/collection/{collection_slug}/stats',headers=params)
+                            os_contract_stats=ro.json()
+                            floor=os_contract_stats['stats']['floor_price']
+                            st.write(token_name)
+                            st.write(f'Current Floor price {floor} Eth')
+                            st.write(f'Token id: {token_id}')
+                            st.write(f'Contract: {contract_id}')
+                            wallet_value+= floor
+            
                     counter+=1
                         
                 else:
