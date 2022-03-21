@@ -321,7 +321,7 @@ elif endpoint == 'Wallet NFTs Value':
         r=requests.get(f'https://api.covalenthq.com/v1/1/address/{wallet}/balances_v2/?quote-currency=USD&format=JSON&nft=true&no-nft-fetch=false&key={api_key}')
         token_content=r.json()
         counter=0 
-        st.write(token_content)
+        #st.write(token_content)
         wallet_value=0  
         #st.write(len(token_content['data']['items']))  
 
