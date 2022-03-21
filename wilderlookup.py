@@ -339,7 +339,7 @@ elif endpoint == 'Wallet NFTs Value':
                         contract_id=token_content['data']['items'][counter]['contract_address']
                         token_name=token_content['data']['items'][counter]['nft_data'][i]['external_data']['name']
                         im=token_content['data']['items'][counter]['nft_data'][i]['external_data']['image_256']
-                        st.write(im)
+                        #st.write(im)
                         
                         if im != None:
                         
