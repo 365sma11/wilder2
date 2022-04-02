@@ -3,12 +3,18 @@ import streamlit as st
 import requests, json 
 import pandas as pd
 from PIL import Image
+from requests.structures import CaseInsensitiveDict
+import csv
 
-os_api= st.secrets["os_api"]
-cov_api= st.secrets["cov_api"]
-mor_api= st.secrets["mor_api"]
+#os_api= st.secrets["os_api"]
+#cov_api= st.secrets["cov_api"]
+#mor_api= st.secrets["mor_api"]
+os_api= 'e5f2a82c71bb4748a1ae81060c449fa2'
+cov_api= 'ckey_fa91923a9dc34181ac2bbbdc82e'
+mor_api= 'OgXkd840mWZ9tIrr1bP1JOwlyRAfYofZXeJllv4Cvnh4hOdZypkFytaC5zJkMDhK'
 
-endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Wallet NFTs Value'])
+
+endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Wallet NFTs Value', 'Pet Whitelist'])
 st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
 
 # Get Opensea api
@@ -83,6 +89,35 @@ if endpoint == 'Wheels/Crafts':
         df=token_content['data']['items'][0]['nft_data'][0]['external_data']['attributes']
         st.dataframe(df)
 
+elif endpoint == 'Pet Whitelist':
+    st.sidebar.subheader("Filters")
+    wallet = st.sidebar.text_input("Wallet")
+
+    if not wallet:
+        st.error("ENTER WALLET ID ON LEFT")
+
+    
+    else:
+        st.write("Checking your for your Wallet ...")
+        with open ('pets_mintlist.csv', mode='r') as csv_file:
+            csv_reader= csv.DictReader(csv_file)
+            line_count=0
+            found=0
+            for row in csv_reader:
+                if row['wallet']==wallet:
+                    found=1
+                    break
+                
+                
+
+            if found==1: 
+                st.write(f"You are on the Whitelist! You get to mint {row['mint']} pets")
+            else:
+                st.write("You are not on the Whitelsit")
+                
+
+
+
 
 elif endpoint == 'Kicks S0':
     im= Image.open('AirWild.png')
@@ -91,6 +126,7 @@ elif endpoint == 'Kicks S0':
     st.markdown(link, unsafe_allow_html=True)
     st.sidebar.subheader("Filters")
     token = st.sidebar.text_input("Token ID")
+    st.write({ "name": "OG Lightning", "description": "Offering the ability to turn night into day, if only for a moment. A true force which embodies the electricity held within a bolt of lightning.", "animation_url": "ipfs://QmYWpURqLoCwrSJ7Wn5WNd8vkCEMaAkjCZP6miofAJFPhH", "image": "ipfs://QmR6w7qZS8Jmh55HxBar8UeKuEafwRnhjP4MppU8tViqs6", "stakingrequests": "disabled", "attributes": [ { "trait_type": "Industry", "value": "Wilder.Kicks" }, { "trait_type": "Base Model", "value": "Lightning" }, { "trait_type": "Primary Material", "value": "Recycled Polymer" }, { "trait_type": "Primary Color", "value": "Black" }, { "trait_type": "Secondary Material", "value": "Metallic" }, { "trait_type": "Secondary Color", "value": "Purple" } ] })
 
     if not token:
         st.error("ENTER TOKEN ID ON LEFT")
@@ -98,12 +134,14 @@ elif endpoint == 'Kicks S0':
     
     else:
          #Get Metadata and parse
+
         params={
 
             'x-api-key':mor_api
         }
         Mr=requests.get(f'https://deep-index.moralis.io/api/v2/nft/0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D/{token}/?chain=eth&format=decimal', headers=params)
         Mtoken_content=Mr.json()
+        st.write(Mtoken_content)
         kicksdictionary = json.loads(Mtoken_content['metadata'])
         descriptions = kicksdictionary["description"]
         attributes = descriptions.split(" - ")[1]
