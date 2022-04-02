@@ -14,7 +14,7 @@ cov_api= 'ckey_fa91923a9dc34181ac2bbbdc82e'
 mor_api= 'OgXkd840mWZ9tIrr1bP1JOwlyRAfYofZXeJllv4Cvnh4hOdZypkFytaC5zJkMDhK'
 
 
-endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Wallet NFTs Value', 'Pet Whitelist'])
+endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Wallet NFTs Value', 'Beast Whitelist'])
 st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
 
 # Get Opensea api
@@ -43,6 +43,7 @@ st.header ("Wilder World")
 if endpoint == 'Wheels/Crafts':
     im= Image.open('wheels_banner.png')
     st.image(im)
+    st.header("Download your Media files")
     link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
     st.markdown(link, unsafe_allow_html=True)
     st.sidebar.subheader("Filters")
@@ -89,7 +90,7 @@ if endpoint == 'Wheels/Crafts':
         df=token_content['data']['items'][0]['nft_data'][0]['external_data']['attributes']
         st.dataframe(df)
 
-elif endpoint == 'Pet Whitelist':
+elif endpoint == 'Beast Whitelist':
     st.sidebar.subheader("Filters")
     wallet = st.sidebar.text_input("Wallet")
 
@@ -107,11 +108,9 @@ elif endpoint == 'Pet Whitelist':
                 if row['wallet']==wallet:
                     found=1
                     break
-                
-                
 
             if found==1: 
-                st.write(f"You are on the Whitelist! You get to mint {row['mint']} pets")
+                st.write(f"You are on the Whitelist! You get to mint {row['mint']} Beasts")
             else:
                 st.write("You are not on the Whitelsit")
                 
@@ -121,6 +120,7 @@ elif endpoint == 'Pet Whitelist':
 
 elif endpoint == 'Kicks S0':
     im= Image.open('AirWild.png')
+    st.header("Download your Media files and see your utility")
     st.image(im)
     link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
     st.markdown(link, unsafe_allow_html=True)
@@ -230,6 +230,7 @@ elif endpoint == 'Kicks S0':
 
 elif endpoint == 'Kicks S01':
     im= Image.open('AirWild.png')
+    st.header("Download your Media files and see your utility")
     st.image(im)
     link = '[Contract](https://etherscan.io/address/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d)'
     st.markdown(link, unsafe_allow_html=True)
