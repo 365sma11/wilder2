@@ -50,6 +50,10 @@ if endpoint == 'Wheels/Crafts':
     token = st.sidebar.text_input("Token ID")
 
     if not token:
+        st.write("In the URL to the opensea address of your token")
+        st.write("example: https://opensea.io/assets/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d/44792931070073871902445706811038693742219397549916803539307329545058277134934")
+        st.write("Copy the part after the last slash in the address (this is your token_id)")
+        st.write("example: 44792931070073871902445706811038693742219397549916803539307329545058277134934")
         st.error("ENTER TOKEN ID ON LEFT")
 
     
@@ -131,6 +135,11 @@ elif endpoint == 'Kicks S0':
     #st.write({ "name": "OG Lightning", "description": "Offering the ability to turn night into day, if only for a moment. A true force which embodies the electricity held within a bolt of lightning.", "animation_url": "ipfs://QmYWpURqLoCwrSJ7Wn5WNd8vkCEMaAkjCZP6miofAJFPhH", "image": "ipfs://QmR6w7qZS8Jmh55HxBar8UeKuEafwRnhjP4MppU8tViqs6", "stakingrequests": "disabled", "attributes": [ { "trait_type": "Industry", "value": "Wilder.Kicks" }, { "trait_type": "Base Model", "value": "Lightning" }, { "trait_type": "Primary Material", "value": "Recycled Polymer" }, { "trait_type": "Primary Color", "value": "Black" }, { "trait_type": "Secondary Material", "value": "Metallic" }, { "trait_type": "Secondary Color", "value": "Purple" } ] })
 
     if not token:
+        st.write("In the URL to the opensea address of your token")
+        st.write("example: https://opensea.io/assets/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d/44792931070073871902445706811038693742219397549916803539307329545058277134934")
+        st.write("Copy the part after the last slash in the address (this is your token_id)")
+        st.write("example: 44792931070073871902445706811038693742219397549916803539307329545058277134934")
+       
         st.error("ENTER TOKEN ID ON LEFT")
 
     
@@ -240,6 +249,11 @@ elif endpoint == 'Kicks S01':
     token = st.sidebar.text_input("Token ID")
 
     if not token:
+        st.write("In the URL to the opensea address of your token")
+        st.write("example: https://opensea.io/assets/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d/44792931070073871902445706811038693742219397549916803539307329545058277134934")
+        st.write("Copy the part after the last slash in the address (this is your token_id)")
+        st.write("example: 44792931070073871902445706811038693742219397549916803539307329545058277134934")
+       
         st.error("ENTER TOKEN ID ON LEFT")
 
     
