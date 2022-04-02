@@ -15,12 +15,12 @@ mor_api= 'OgXkd840mWZ9tIrr1bP1JOwlyRAfYofZXeJllv4Cvnh4hOdZypkFytaC5zJkMDhK'
 
 
 endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Wallet NFTs Value', 'Beast Whitelist'])
-st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
+st.title(f"SMA11'S WilderWorld BLACK BOOK - {endpoint}") 
 
 # Get Opensea api
 collection_slug="wilderworld"
 asset_contract_address="0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D"
-st.header ("Wilder World") 
+
 
 
 
