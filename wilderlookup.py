@@ -91,6 +91,8 @@ if endpoint == 'Wheels/Crafts':
         st.dataframe(df)
 
 elif endpoint == 'Beast Whitelist':
+    im= Image.open('Wolf.png')
+    st.image(im)
     st.sidebar.subheader("Filters")
     wallet = st.sidebar.text_input("Wallet")
 
