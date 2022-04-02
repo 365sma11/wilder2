@@ -126,7 +126,7 @@ elif endpoint == 'Kicks S0':
     st.markdown(link, unsafe_allow_html=True)
     st.sidebar.subheader("Filters")
     token = st.sidebar.text_input("Token ID")
-    st.write({ "name": "OG Lightning", "description": "Offering the ability to turn night into day, if only for a moment. A true force which embodies the electricity held within a bolt of lightning.", "animation_url": "ipfs://QmYWpURqLoCwrSJ7Wn5WNd8vkCEMaAkjCZP6miofAJFPhH", "image": "ipfs://QmR6w7qZS8Jmh55HxBar8UeKuEafwRnhjP4MppU8tViqs6", "stakingrequests": "disabled", "attributes": [ { "trait_type": "Industry", "value": "Wilder.Kicks" }, { "trait_type": "Base Model", "value": "Lightning" }, { "trait_type": "Primary Material", "value": "Recycled Polymer" }, { "trait_type": "Primary Color", "value": "Black" }, { "trait_type": "Secondary Material", "value": "Metallic" }, { "trait_type": "Secondary Color", "value": "Purple" } ] })
+    #st.write({ "name": "OG Lightning", "description": "Offering the ability to turn night into day, if only for a moment. A true force which embodies the electricity held within a bolt of lightning.", "animation_url": "ipfs://QmYWpURqLoCwrSJ7Wn5WNd8vkCEMaAkjCZP6miofAJFPhH", "image": "ipfs://QmR6w7qZS8Jmh55HxBar8UeKuEafwRnhjP4MppU8tViqs6", "stakingrequests": "disabled", "attributes": [ { "trait_type": "Industry", "value": "Wilder.Kicks" }, { "trait_type": "Base Model", "value": "Lightning" }, { "trait_type": "Primary Material", "value": "Recycled Polymer" }, { "trait_type": "Primary Color", "value": "Black" }, { "trait_type": "Secondary Material", "value": "Metallic" }, { "trait_type": "Secondary Color", "value": "Purple" } ] })
 
     if not token:
         st.error("ENTER TOKEN ID ON LEFT")
