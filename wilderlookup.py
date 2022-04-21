@@ -9,9 +9,7 @@ import csv
 #os_api= st.secrets["os_api"]
 #cov_api= st.secrets["cov_api"]
 #mor_api= st.secrets["mor_api"]
-os_api= 'e5f2a82c71bb4748a1ae81060c449fa2'
-cov_api= 'ckey_fa91923a9dc34181ac2bbbdc82e'
-mor_api= 'OgXkd840mWZ9tIrr1bP1JOwlyRAfYofZXeJllv4Cvnh4hOdZypkFytaC5zJkMDhK'
+
 
 
 endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Wallet NFTs Value', "Beast's"])
@@ -112,9 +110,9 @@ elif endpoint == "Beast's":
         params={}
         params['limit']=50
         api_key= cov_api  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
-        r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0x1A178CFD768F74b3308cbca9998C767F4E5B2CF8/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
+        r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0x1A178CFD768F74b3308cbca9998C767F4E5B2CF8/nft_metadata/{token_id}/?quote-currency=USD&format=JSON&key={api_key}')
         token_content=r.json()
-        st.write(token_content)
+        
 
 
         # Write token content
