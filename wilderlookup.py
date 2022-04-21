@@ -14,7 +14,7 @@ cov_api= 'ckey_fa91923a9dc34181ac2bbbdc82e'
 mor_api= 'OgXkd840mWZ9tIrr1bP1JOwlyRAfYofZXeJllv4Cvnh4hOdZypkFytaC5zJkMDhK'
 
 
-endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Wallet NFTs Value', 'Beast Whitelist'])
+endpoint= st.sidebar.selectbox("Endpoints", ['Wheels/Crafts','Kicks S0', 'Kicks S01', 'Wallet NFTs Value', "Beast's"])
 st.title(f"SMA11'S WilderWorld BLACK BOOK - {endpoint}") 
 
 # Get Opensea api
@@ -94,31 +94,83 @@ if endpoint == 'Wheels/Crafts':
         df=token_content['data']['items'][0]['nft_data'][0]['external_data']['attributes']
         st.dataframe(df)
 
-elif endpoint == 'Beast Whitelist':
+elif endpoint == "Beast's":
     im= Image.open('Wolf.png')
     st.image(im)
     st.sidebar.subheader("Filters")
-    wallet = st.sidebar.text_input("Wallet")
+    token_id = st.sidebar.text_input("Token ID")
 
-    if not wallet:
-        st.error("ENTER WALLET ID ON LEFT")
+    if not token_id:
+        st.write("In the URL to the opensea address of your token")
+        st.write("example: https://opensea.io/assets/0xc2e9678a71e50e5aed036e00e9c5caeb1ac5987d/44792931070073871902445706811038693742219397549916803539307329545058277134934")
+        st.write("Copy the part after the last slash in the address (this is your token_id)")
+        st.write("example: 44792931070073871902445706811038693742219397549916803539307329545058277134934")
+        st.error("ENTER TOKEN ID ON LEFT")
 
     
     else:
-        st.write("Checking your for your Wallet ...")
-        with open ('pets_mintlist.csv', mode='r') as csv_file:
-            csv_reader= csv.DictReader(csv_file)
-            line_count=0
-            found=0
-            for row in csv_reader:
-                if row['wallet']==wallet:
-                    found=1
-                    break
+        params={}
+        params['limit']=50
+        api_key= cov_api  # Get your own api key here: https://www.covalenthq.com/platform/#/apikey/
+        r=requests.get(f'https://api.covalenthq.com/v1/1/tokens/0x1A178CFD768F74b3308cbca9998C767F4E5B2CF8/nft_metadata/{token}/?quote-currency=USD&format=JSON&key={api_key}')
+        token_content=r.json()
+        st.write(token_content)
 
-            if found==1: 
-                st.write(f"You are on the Whitelist! You get to mint {row['mint']} Beasts")
-            else:
-                st.write("You are not on the Whitelsit")
+
+        # Write token content
+        st.write(token_content['data']['items'][0]['nft_data'][0]['external_data']['name'])
+        st.image(token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512'])
+        image256 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_256']
+        image512 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_512']
+        image1024 = token_content['data']['items'][0]['nft_data'][0]['external_data']['image_1024']
+        animation1 = token_content['data']['items'][0]['nft_data'][0]['external_data']['animation_url']      
+        opensea= 'https://opensea.io/assets/'+ token_content['data']['items'][0]['contract_address']+ "/" + token_content['data']['items'][0]['nft_data'][0]['token_id']
+        st.write('Token ID:')
+        st.write(token_content['data']['items'][0]['nft_data'][0]['token_id'])
+        opensea_link= f'[OpenSea] ({opensea})'
+        st.markdown(opensea_link, unsafe_allow_html=True)
+        res=animation1.strip('ipfs://')
+        
+        animation= "https://ipfs.io/ipfs/"+ res
+
+        link_256 = f'[Image 256] ({image256})'
+        link_512 = f'[Image 512]({image512})'
+        link_1024 = f'[Image 1024]({image1024})' 
+        link_animation = f'[Video]({animation})' 
+        st.markdown(link_256, unsafe_allow_html=True)
+        st.markdown(link_512, unsafe_allow_html=True)
+        st.markdown(link_1024, unsafe_allow_html=True)
+        st.markdown(link_animation, unsafe_allow_html=True)
+
+        df=token_content['data']['items'][0]['nft_data'][0]['external_data']['attributes']
+        st.dataframe(df)
+
+
+# elif endpoint == 'Beast Whitelist':
+#     im= Image.open('Wolf.png')
+#     st.image(im)
+#     st.sidebar.subheader("Filters")
+#     wallet = st.sidebar.text_input("Wallet")
+
+#     if not wallet:
+#         st.error("ENTER WALLET ID ON LEFT")
+
+    
+#     else:
+#         st.write("Checking your for your Wallet ...")
+#         with open ('pets_mintlist.csv', mode='r') as csv_file:
+#             csv_reader= csv.DictReader(csv_file)
+#             line_count=0
+#             found=0
+#             for row in csv_reader:
+#                 if row['wallet']==wallet:
+#                     found=1
+#                     break
+
+#             if found==1: 
+#                 st.write(f"You are on the Whitelist! You get to mint {row['mint']} Beasts")
+#             else:
+#                 st.write("You are not on the Whitelsit")
                 
 
 
