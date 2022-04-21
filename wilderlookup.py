@@ -6,9 +6,9 @@ from PIL import Image
 from requests.structures import CaseInsensitiveDict
 import csv
 
-#os_api= st.secrets["os_api"]
-#cov_api= st.secrets["cov_api"]
-#mor_api= st.secrets["mor_api"]
+os_api= st.secrets["os_api"]
+cov_api= st.secrets["cov_api"]
+mor_api= st.secrets["mor_api"]
 
 
 
