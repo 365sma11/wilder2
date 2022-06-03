@@ -422,28 +422,37 @@ elif endpoint == 'Sma11':
     filename="moto.csv"
     with open (filename,'r') as data:
         for line in csv.DictReader(data):
+
+            pic1 = line['image']    
+            link_pic = f'[Pic]({pic1})'  
+            animation1 = line['animation_url']    
+            link_animation = f'[Video]({animation1})'  
             
-            col1, col2 = st.columns(2)
-            with col1:
-                st.image(line['image'])
-                st.write("Sidecar",line['Side Cart'])
+            st.image(line['image'])
+            st.write("Plate:",line['Number Plate'], '|', "Sidecar",line['Side Cart'])
+ 
+            st.markdown(link_pic, unsafe_allow_html=True) 
+            st.markdown(link_animation, unsafe_allow_html=True) 
+
+
+            # col1, col2 = st.columns(2)
+            # with col1:
+            #     st.image(line['image'])
+            #     st.write("Sidecar",line['Side Cart'])
                
 
-            with col2:
-                moto_dict={'trait':'Top Chassis','value':line['Top Chassis']},{'trait':'Side Cart','value':line['Side Cart']},{'trait':'Pattern','value':line['Pattern']},{'trait':'Color','value':line['Color']}, {'trait':'Number Plate','value':line['Number Plate']} 
-                df = pd.DataFrame(moto_dict)
-                st.dataframe(df,400,200)
-                pic1 = line['image']    
-                link_pic = f'[Pic]({pic1})'     
-                st.markdown(link_pic, unsafe_allow_html=True) 
-                animation1 = line['animation_url']    
-                link_animation = f'[Video]({animation1})'     
-                st.markdown(link_animation, unsafe_allow_html=True) 
+            # with col2:
+            #     moto_dict={'trait':'Top Chassis','value':line['Top Chassis']},{'trait':'Side Cart','value':line['Side Cart']},{'trait':'Pattern','value':line['Pattern']},{'trait':'Color','value':line['Color']}, {'trait':'Number Plate','value':line['Number Plate']} 
+            #     df = pd.DataFrame(moto_dict)
+            #     st.dataframe(df,400,200)
+            #     pic1 = line['image']    
+            #     link_pic = f'[Pic]({pic1})'     
+            #     st.markdown(link_pic, unsafe_allow_html=True) 
+            #     animation1 = line['animation_url']    
+            #     link_animation = f'[Video]({animation1})'     
+            #     st.markdown(link_animation, unsafe_allow_html=True) 
 
-                # if line['Color']=='Color 0':
-                #     moto_dict2={'trait':'Base & Light','value':'#6BACDF'},{'trait':'Second Color','value':'#00193F'}, {'trait':'Third Color','value':'#D3B486'}
-                #     df=pd.DataFrame(moto_dict2)
-                #     st.dataframe(df,400,200)
+
             if line['Color']=='Color 0':
                 st.image('color 0.png')
             elif line['Color']=='Color 1':
