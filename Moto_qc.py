@@ -13,15 +13,16 @@ import time
 from requests.structures import CaseInsensitiveDict
 import csv
 
-endpoint= st.sidebar.selectbox("Endpoints", ['Baus','Panzer', 'Lotene','Sma11','Misterbeans'])
-st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
+endpoint= st.sidebar.selectbox("Endpoints", ['click here','Baus','Panzer', 'Lotene','Sma11','Misterbeans'])
+
 
 # Get Opensea api
 collection_slug="wilderworld"
 asset_contract_address="0xc2e9678A71e50E5AEd036e00e9c5caeb1aC5987D"
 st.header ("Wilder World") 
+st.header('Choose user on Left')
 if endpoint=="Baus":
-    st.sidebar.subheader("Filters")
+    st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
     moto_dict={}
     moto={}
     filename="Baus_moto.csv"
@@ -152,7 +153,7 @@ if endpoint=="Baus":
 
 
 elif endpoint == 'Panzer':
-    st.sidebar.subheader("Filters")
+    st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
     moto_dict={}
     moto={}
     filename="Panzer_moto.csv"
@@ -283,7 +284,7 @@ elif endpoint == 'Panzer':
             st.markdown("""---""")
 
 elif endpoint == 'Lotene':
-    st.sidebar.subheader("Filters")
+    st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
     moto_dict={}
     moto={}
     filename="Lotene_moto.csv"
@@ -415,7 +416,7 @@ elif endpoint == 'Lotene':
 
 
 elif endpoint == 'Sma11':
-    st.sidebar.subheader("Filters")
+    st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
     moto_dict={}
     moto={}
     filename="moto.csv"
@@ -546,7 +547,7 @@ elif endpoint == 'Sma11':
             st.markdown("""---""")
 
 elif endpoint == 'Misterbeans':
-    st.sidebar.subheader("Filters")
+    st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
     moto_dict={}
     moto={}
     filename="Misterbeans_moto.csv"
