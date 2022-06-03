@@ -180,7 +180,36 @@ elif endpoint == 'Panzer':
                 #     moto_dict2={'trait':'Base & Light','value':'#6BACDF'},{'trait':'Second Color','value':'#00193F'}, {'trait':'Third Color','value':'#D3B486'}
                 #     df=pd.DataFrame(moto_dict2)
                 #     st.dataframe(df,400,200)
-
+            if line['Color']=='Color 0':
+                st.image('color 0.png')
+            elif line['Color']=='Color 1':
+                st.image('color 1.png') 
+            elif line['Color']=='Color 2':
+                st.image('color 2.png') 
+            elif line['Color']=='Color 3':
+                st.image('color 3.png') 
+            elif line['Color']=='Color 4':
+                st.image('color 4.png') 
+            elif line['Color']=='Color 5':
+                st.image('color 5.png') 
+            elif line['Color']=='Color 6':
+                st.image('color 6.png') 
+            elif line['Color']=='Color 7':
+                st.image('color 7.png') 
+            elif line['Color']=='Color 8':
+                st.image('color 8.png') 
+            elif line['Color']=='Color 9':
+                st.image('color 9.png') 
+            elif line['Color']=='Color 10':
+                st.image('color 10.png') 
+            elif line['Color']=='Color 11':
+                st.image('color 11.png') 
+            elif line['Color']=='Color 12':
+                st.image('color 12.png') 
+            elif line['Color']=='Color 13':
+                st.image('color 13.png') 
+            elif line['Color']=='Color 14':
+                st.image('color 14.png') 
             
             
             col1, col2 = st.columns(2)
@@ -282,7 +311,36 @@ elif endpoint == 'Lotene':
                 #     moto_dict2={'trait':'Base & Light','value':'#6BACDF'},{'trait':'Second Color','value':'#00193F'}, {'trait':'Third Color','value':'#D3B486'}
                 #     df=pd.DataFrame(moto_dict2)
                 #     st.dataframe(df,400,200)
-
+            if line['Color']=='Color 0':
+                st.image('color 0.png')
+            elif line['Color']=='Color 1':
+                st.image('color 1.png') 
+            elif line['Color']=='Color 2':
+                st.image('color 2.png') 
+            elif line['Color']=='Color 3':
+                st.image('color 3.png') 
+            elif line['Color']=='Color 4':
+                st.image('color 4.png') 
+            elif line['Color']=='Color 5':
+                st.image('color 5.png') 
+            elif line['Color']=='Color 6':
+                st.image('color 6.png') 
+            elif line['Color']=='Color 7':
+                st.image('color 7.png') 
+            elif line['Color']=='Color 8':
+                st.image('color 8.png') 
+            elif line['Color']=='Color 9':
+                st.image('color 9.png') 
+            elif line['Color']=='Color 10':
+                st.image('color 10.png') 
+            elif line['Color']=='Color 11':
+                st.image('color 11.png') 
+            elif line['Color']=='Color 12':
+                st.image('color 12.png') 
+            elif line['Color']=='Color 13':
+                st.image('color 13.png') 
+            elif line['Color']=='Color 14':
+                st.image('color 14.png') 
             
             
             col1, col2 = st.columns(2)
@@ -385,7 +443,36 @@ elif endpoint == 'Sma11':
                 #     moto_dict2={'trait':'Base & Light','value':'#6BACDF'},{'trait':'Second Color','value':'#00193F'}, {'trait':'Third Color','value':'#D3B486'}
                 #     df=pd.DataFrame(moto_dict2)
                 #     st.dataframe(df,400,200)
-
+            if line['Color']=='Color 0':
+                st.image('color 0.png')
+            elif line['Color']=='Color 1':
+                st.image('color 1.png') 
+            elif line['Color']=='Color 2':
+                st.image('color 2.png') 
+            elif line['Color']=='Color 3':
+                st.image('color 3.png') 
+            elif line['Color']=='Color 4':
+                st.image('color 4.png') 
+            elif line['Color']=='Color 5':
+                st.image('color 5.png') 
+            elif line['Color']=='Color 6':
+                st.image('color 6.png') 
+            elif line['Color']=='Color 7':
+                st.image('color 7.png') 
+            elif line['Color']=='Color 8':
+                st.image('color 8.png') 
+            elif line['Color']=='Color 9':
+                st.image('color 9.png') 
+            elif line['Color']=='Color 10':
+                st.image('color 10.png') 
+            elif line['Color']=='Color 11':
+                st.image('color 11.png') 
+            elif line['Color']=='Color 12':
+                st.image('color 12.png') 
+            elif line['Color']=='Color 13':
+                st.image('color 13.png') 
+            elif line['Color']=='Color 14':
+                st.image('color 14.png') 
             
             
             col1, col2 = st.columns(2)
@@ -487,7 +574,36 @@ elif endpoint == 'Misterbeans':
                 #     moto_dict2={'trait':'Base & Light','value':'#6BACDF'},{'trait':'Second Color','value':'#00193F'}, {'trait':'Third Color','value':'#D3B486'}
                 #     df=pd.DataFrame(moto_dict2)
                 #     st.dataframe(df,400,200)
-
+            if line['Color']=='Color 0':
+                st.image('color 0.png')
+            elif line['Color']=='Color 1':
+                st.image('color 1.png') 
+            elif line['Color']=='Color 2':
+                st.image('color 2.png') 
+            elif line['Color']=='Color 3':
+                st.image('color 3.png') 
+            elif line['Color']=='Color 4':
+                st.image('color 4.png') 
+            elif line['Color']=='Color 5':
+                st.image('color 5.png') 
+            elif line['Color']=='Color 6':
+                st.image('color 6.png') 
+            elif line['Color']=='Color 7':
+                st.image('color 7.png') 
+            elif line['Color']=='Color 8':
+                st.image('color 8.png') 
+            elif line['Color']=='Color 9':
+                st.image('color 9.png') 
+            elif line['Color']=='Color 10':
+                st.image('color 10.png') 
+            elif line['Color']=='Color 11':
+                st.image('color 11.png') 
+            elif line['Color']=='Color 12':
+                st.image('color 12.png') 
+            elif line['Color']=='Color 13':
+                st.image('color 13.png') 
+            elif line['Color']=='Color 14':
+                st.image('color 14.png') 
             
             
             col1, col2 = st.columns(2)
