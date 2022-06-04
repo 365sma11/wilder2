@@ -36,7 +36,7 @@ if endpoint=="Baus":
             
             st.image(line['image'])
             st.write("Plate:",line['Number Plate'], '|', "Sidecar",line['Side Cart'])
- 
+            st.write(line['Color']) 
             st.markdown(link_pic, unsafe_allow_html=True) 
             st.markdown(link_animation, unsafe_allow_html=True)
 
@@ -161,7 +161,7 @@ elif endpoint == 'Panzer':
             
             st.image(line['image'])
             st.write("Plate:",line['Number Plate'], '|', "Sidecar",line['Side Cart'])
- 
+            st.write(line['Color'])
             st.markdown(link_pic, unsafe_allow_html=True) 
             st.markdown(link_animation, unsafe_allow_html=True)
 
@@ -286,7 +286,7 @@ elif endpoint == 'Lotene':
             
             st.image(line['image'])
             st.write("Plate:",line['Number Plate'], '|', "Sidecar",line['Side Cart'])
- 
+            st.write(line['Color']) 
             st.markdown(link_pic, unsafe_allow_html=True) 
             st.markdown(link_animation, unsafe_allow_html=True)
 
@@ -412,7 +412,7 @@ elif endpoint == 'Sma11':
             
             st.image(line['image'])
             st.write("Plate:",line['Number Plate'], '|', "Sidecar",line['Side Cart'])
- 
+            st.write(line['Color'])
             st.markdown(link_pic, unsafe_allow_html=True) 
             st.markdown(link_animation, unsafe_allow_html=True) 
 
@@ -552,7 +552,7 @@ elif endpoint == 'Misterbeans':
             
             st.image(line['image'])
             st.write("Plate:",line['Number Plate'], '|', "Sidecar",line['Side Cart'])
- 
+            st.write(line['Color'])
             st.markdown(link_pic, unsafe_allow_html=True) 
             st.markdown(link_animation, unsafe_allow_html=True)
 
