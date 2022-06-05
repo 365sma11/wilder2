@@ -13,7 +13,7 @@ import time
 from requests.structures import CaseInsensitiveDict
 import csv
 
-endpoint= st.sidebar.selectbox("Endpoints", ['click here','Baus','Panzer', 'Lotene','Sma11','Misterbeans'])
+endpoint= st.sidebar.selectbox("Endpoints", ['click here', 'All','Baus','Panzer', 'Lotene','Sma11','Misterbeans'])
 
 
 # Get Opensea api
@@ -395,6 +395,37 @@ elif endpoint == 'Lotene':
 
             st.markdown("""---""")
             st.markdown("""---""")
+
+elif endpoint == 'All':
+    st.title(f"SMA11'S WHEELS BLACK BOOK - {endpoint}") 
+    moto_dict={}
+    moto={}
+    filename="All_moto.csv"
+    with open (filename,'r') as data:
+        for line in csv.DictReader(data):
+            col1, col2 = st.columns(2)
+            with col1:
+                st.image(line['image'])
+
+                st.markdown("""---""")
+                st.markdown("""---""")
+            with col2:
+                
+                if line['Side Cart']=='Side Cart':
+                    moto_dict={'trait':'Top Chassis','value':line['Top Chassis']},{'trait':'Sidecar','value':line['Side Cart']},{'trait':'Pattern','value':line['Pattern']},{'trait':'Color','value':line['Color']}, {'trait':'Number Plate','value':line['Number Plate']} 
+                else:
+                    moto_dict={'trait':'Top Chassis','value':line['Top Chassis']},{'trait':'Pattern','value':line['Pattern']},{'trait':'Color','value':line['Color']}, {'trait':'Number Plate','value':line['Number Plate']} 
+               
+                df = pd.DataFrame(moto_dict)
+                st.dataframe(df,400,200)
+                pic1 = line['image']    
+                link_pic = f'[Pic]({pic1})'     
+                st.markdown(link_pic, unsafe_allow_html=True) 
+                animation1 = line['animation_url']    
+                link_animation = f'[Video]({animation1})'     
+                st.markdown(link_animation, unsafe_allow_html=True) 
+
+
 
 
 elif endpoint == 'Sma11':
