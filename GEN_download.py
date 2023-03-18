@@ -42,7 +42,13 @@ else:
             new_link= "https://ipfs.io/ipfs/"+ res
             final_link = f'[{x}] ({new_link})'
             st.markdown(final_link, unsafe_allow_html=True)
+        rvideo=owned[count]['metadata']["animation_url"]
+        svideo=rvideo.strip('ipfs://')
+        nvideo="https://ipfs.io/ipfs/"+ svideo
+        video=f'[Video] ({nvideo})'
+        st.markdown(video, unsafe_allow_html=True)
 
+        
         count=count +1
         st.markdown("""---""")
 
