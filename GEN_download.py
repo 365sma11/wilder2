@@ -1,4 +1,4 @@
-import requests, ipfshttpclient
+import requests
 import streamlit as st
 
 #api_alchemy= st.secrets["api_alchemy"]
