@@ -2,7 +2,7 @@ import requests
 import streamlit as st
 from PIL import Image
 
-#api_alchemy= st.secrets["api_alchemy"]
+api_alchemy= st.secrets["api_alchemy"]
 
 
 
