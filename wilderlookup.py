@@ -367,7 +367,7 @@ def zns(contract_address,token_id):
     image3= get_link(image3)
 
     #st.write(rjson['raw']['metadata'])
-    
+    check_domain= rjson['raw']['metadata']['attributes'][0]["value"]
     
     col1, col2 = st.columns(2)
     with col1:
@@ -382,7 +382,8 @@ def zns(contract_address,token_id):
     st.markdown(image_lnk2, unsafe_allow_html=True) 
     image_lnk3= f'[Image3]({image3})'
     st.markdown(image_lnk3, unsafe_allow_html=True)
-
+    if check_domain != "Domain":
+        st.write("Seed:", rjson['raw']['metadata']['seed'])
     st.divider ()
 
 # Streamlit app layout
