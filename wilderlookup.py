@@ -61,7 +61,7 @@ def get_link(url):
 # Function declarations for each endpoint
 def default_process(contract_address,token_id):
     
-    st.write(token_id)
+    st.write("Token id:",token_id)
     url = f"https://eth-mainnet.g.alchemy.com/nft/v3/{alch_api}/getNFTMetadata?contractAddress={contract_address}&tokenId={token_id}&refreshCache=false"
     headers = {"accept": "application/json"}
     response = requests.get(url, headers=headers)
@@ -124,7 +124,7 @@ def cribs(contract_address,token_id):
 
 def airwild0(contract_address,token_id):
 
-    st.write(token_id)
+    st.write("Token id:",token_id)
     url = f"https://eth-mainnet.g.alchemy.com/nft/v3/{alch_api}/getNFTMetadata?contractAddress={contract_address}&tokenId={token_id}&refreshCache=false"
     headers = {"accept": "application/json"}
     response = requests.get(url, headers=headers)
@@ -185,7 +185,7 @@ def airwild0(contract_address,token_id):
     st.divider ()
 def airwild1(contract_address,token_id):
    
-    st.write(token_id)
+    st.write("Token id:",token_id)
     url = f"https://eth-mainnet.g.alchemy.com/nft/v3/{alch_api}/getNFTMetadata?contractAddress={contract_address}&tokenId={token_id}&refreshCache=false"
     headers = {"accept": "application/json"}
     response = requests.get(url, headers=headers)
@@ -250,7 +250,7 @@ def airwild1(contract_address,token_id):
 
 def airwild2(contract_address,token_id):
   
-    st.write(token_id)
+    st.write("Token id:",token_id)
     url = f"https://eth-mainnet.g.alchemy.com/nft/v3/{alch_api}/getNFTMetadata?contractAddress={contract_address}&tokenId={token_id}&refreshCache=false"
     headers = {"accept": "application/json"}
     response = requests.get(url, headers=headers)
@@ -319,7 +319,7 @@ def airwild2(contract_address,token_id):
 
 def gens(contract_address,token_id):
   
-    st.write(token_id)
+    st.write("Token id:",token_id)
     url = f"https://eth-mainnet.g.alchemy.com/nft/v3/{alch_api}/getNFTMetadata?contractAddress={contract_address}&tokenId={token_id}&refreshCache=false"
     headers = {"accept": "application/json"}
     response = requests.get(url, headers=headers)
@@ -354,7 +354,7 @@ def gens(contract_address,token_id):
 
 def zns(contract_address,token_id):
  
-    st.write(token_id)
+    st.write("Token id:",token_id)
     url = f"https://eth-mainnet.g.alchemy.com/nft/v3/{alch_api}/getNFTMetadata?contractAddress={contract_address}&tokenId={token_id}&refreshCache=false"
     headers = {"accept": "application/json"}
     response = requests.get(url, headers=headers)
@@ -395,7 +395,7 @@ st.image(im)
 wallet_address = st.sidebar.text_input("Enter Wallet Address")
 
 def get_nfts_from_wallet(wallet_address):
-    st.write(wallet_address)
+    st.write("Wallet:",wallet_address)
     if wallet_address:
         api_key = mor_api
         params = {
