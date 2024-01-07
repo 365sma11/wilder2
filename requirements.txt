@@ -1,1 +1,1 @@
-from moralis import evm_api
+from covalent import CovalentClient
